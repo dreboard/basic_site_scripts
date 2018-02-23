@@ -1,0 +1,17 @@
+
+<IfModule mod_rewrite.c>
+#ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
+RewriteEngine On
+#ErrorDocument 400 /errors/error.php
+#ErrorDocument 403 /errors/error.php
+#ErrorDocument 404 /errors/error.php
+#ErrorDocument 405 /errors/error.php
+#ErrorDocument 408 /errors/error.php
+#ErrorDocument 500 /errors/error.php
+#ErrorDocument 502 /errors/error.php
+#ErrorDocument 504 /errors/error.php
+
+#RewriteCond %{REQUEST_URI} !^/public/
+#RewriteRule ^(.*)$ /public/$1 [L,R=301]
+
+</IfModule>

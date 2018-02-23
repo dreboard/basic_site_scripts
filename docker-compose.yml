@@ -1,0 +1,32 @@
+version: '3'
+services:
+
+  web:
+    build: .
+    ports:
+     - "8088:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+        PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
+        PHP_XDEBUG_REMOTE_HOST: "192.168.65.1"
+        PHP_IDE_CONFIG: "serverName=dev.local"
+    extra_hosts:
+        # IMPORTANT: Replace with your Docker Host IP (will be appended to /etc/hosts)
+      - "dockerhost:192.168.41.204"
+  database:
+    image: mysql
+    container_name: database.dev
+    ports:
+      - "32768:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_ROOT_HOST: '172.17.0.1:32768'
+      MYSQL_DATABASE: 'server1'
+      MYSQL_USER: 'serve'
+      MYSQL_PASSWORD: 'serve'
+      MYSQL_ROOT_HOST: '127.0.0.1'
+    volumes:
+         #- ./db/init.sql:/tmp/init.sql
+         - /var/lib/mysql
+

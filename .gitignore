@@ -1,0 +1,10 @@
+.DS_Store
+.php_cs.cache
+/.idea
+debug.sh
+/vendor
+/logs/*
+/tests/
+/output/
+/projectFilesBackup/
+/docs/

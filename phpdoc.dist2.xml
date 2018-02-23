@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+    <title>My project</title>
+    <parser>
+        <target>./docs</target>
+    </parser>
+    <transformer>
+        <target>./docs</target>
+    </transformer>
+    <files>
+        <directory>./app</directory>
+        <ignore>./app/functions.php</ignore>
+        <ignore>extensions/*</ignore>
+    </files>
+    <transformations>
+        <template name="responsive" />
+    </transformations>
+</phpdoc>

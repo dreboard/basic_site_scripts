@@ -1,0 +1,17 @@
+POST http://localhost:8088/requests.php
+Content-Type: application/x-www-form-urlencoded
+
+test=Hi&to=site
+
+###
+GET http://localhost:8088/requests.php?str=test%20string HTTP/1.1
+
+###
+GET http://localhost:8088/
+
+### Send post request
+POST http://localhost:8088/requests.php
+Content-Type: application/x-www-form-urlencoded
+
+to=BAR
+###

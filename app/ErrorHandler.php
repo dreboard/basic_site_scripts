@@ -90,7 +90,7 @@ class ErrorHandler
      * @param Exception $e
      * @return bool|null
      */
-    public function exceptionInsert(Exception $e)
+    public function exceptionInsert(Throwable $e)
     {
         $ex = get_class($e);
 

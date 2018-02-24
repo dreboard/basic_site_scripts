@@ -9,7 +9,9 @@ try {
         $register->registerUser($name, $password);
     }
 } catch (Throwable $e) {
-    $_SERVER['location: /index.php'];
+	echo $e->getMessage();
+	error_log($e->getMessage());
+    $_SERVER['location: index.php'];
 }
 
 

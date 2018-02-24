@@ -30,7 +30,6 @@ class Register
     public function __construct(PDO $db)
     {
         $this->db = $db;
-        session_start();
     }
 
     /**
@@ -41,15 +40,15 @@ class Register
      */
     public function registerUser(string $name, string $password)
     {
-        if(empty($name) || null === $name || false === $this->checkPassword($password)){
+        /*if(empty($name) || null === $name || false === $this->checkPassword($password)){
             throw new \Exception('Requirements not met');
             $_SESSION['msg'] = 'Requirements not met';
-        }
+        }*/
         $name = filter_var($name, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         if($this->checkExisting($name)){
             try{
                 $sql = $this->db->prepare(
-                    'CALL save_user(:name, :pass, :level)'
+                    'CALL SaveUserToDB(:name, :pass, :level)'
                 );
                 $sql->bindParam(
                     ':name',
@@ -64,8 +63,8 @@ class Register
                 );
                 $sql->bindValue(
                     ':level',
-                    'basic',
-                    PDO::PARAM_STR|PDO::PARAM_INPUT_OUTPUT
+                    1,
+                    PDO::PARAM_INT|PDO::PARAM_INPUT_OUTPUT
                 );
                 ;
                 if($sql->execute()){
@@ -93,7 +92,7 @@ class Register
      */
     public function checkExisting(string $name)
     {
-        $sql = $this->db->prepare('CALL find_user(:user)');
+        $sql = $this->db->prepare('CALL FindUserByName(:user)');
         $sql->bindValue(':user', $name);
         $sql->execute();
         if($sql->rowCount() < 0){

@@ -19,7 +19,7 @@ if (isset($_POST['name'])) {
     }
 } else {
     //var_dump(session_id());die;
-    $handler->logout(session_id());
+	$sess_handle->logout(session_id());
 
     //session_destroy();
     $_SESSION = [];

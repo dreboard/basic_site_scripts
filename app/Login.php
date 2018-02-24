@@ -67,7 +67,7 @@ class Login
             throw new \Exception('Username Required');
         }
         try{
-            $sql = $this->db->prepare('CALL find_user(:user)');
+            $sql = $this->db->prepare('CALL FindUser(:user)');
             $sql->bindValue(':user', $name);
             $sql->execute();
             return $sql->fetch(PDO::FETCH_ASSOC);

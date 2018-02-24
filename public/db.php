@@ -13,24 +13,17 @@ if (!defined('ENVIRONMENT') && PHP_SAPI !== 'cli') {
 ini_set('error_reporting', 1);
 xdebug_break();
 ini_set('log_errors', 1);
-ini_set('error_log', $_SERVER['DOCUMENT_ROOT'] . '/php_log.log');
+//ini_set('error_log', $_SERVER['DOCUMENT_ROOT'] . '/php_log.log');
+ini_set('error_log', __DIR__ . '/../logs/php_log.log');
 error_log(__FILE__ . time());
 error_reporting(E_ALL);
 if (ENVIRONMENT === 'development') {
     if (extension_loaded('xdebug')) {
         ini_set('xdebug.remote_log', __DIR__ . '/../logs/xdegub.log');
-        ini_set('xdebug.remote_host', '192.168.41.204');
+        //ini_set('xdebug.remote_host', '192.168.41.204');
 
-        ini_set('xdebug.remote_port', 9000);
-        ini_set('xdebug.remote_mode', 'req');
-        ini_set('xdebug.default_enable', 1);
-        ini_set('xdebug.remote_handler', 'dbgp');
-
-        ini_set('xdebug.remote_enable', 1);
-        ini_set('xdebug.remote_connect_back', 0);
 
         ini_set('xdebug.show_error_trace', 'on');
-        ini_set('xdebug.idekey', 'PHPSTORM');
         ini_set('xdebug.scream', 1);
         ini_set('xdebug.show_error_trace', 1);
         //ini_set('xdebug.show_exception_trace', 1); // force php to output exceptions even in a try catch block
@@ -68,10 +61,15 @@ try {
 //$log->pushHandler(new PDOLogger($db));
 //;port=32768
 
-    $dsn = 'mysql:host=172.17.0.1:32768;dbname=server1';
-    $user = 'serve';
-    $password = 'serve';
-
+    if($_SERVER['REMOTE_ADDR'] === '172.17.0.1'){
+	    $dsn = 'mysql:host=172.17.0.1:32768;dbname=server1';
+	    $user = 'serve';
+	    $password = 'serve';
+    } else {
+	    $dsn = 'mysql:host=localhost;dbname=server1';
+	    $user = 'root';
+	    $password = '';
+    }
 
     $db = new PDO($dsn, $user, $password);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

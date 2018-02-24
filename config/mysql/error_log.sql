@@ -6,6 +6,7 @@ php_logs
 DROP TABLE IF EXISTS `error_log`;
 CREATE TABLE IF NOT EXISTS `error_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `time` datetime NOT NULL,
   `errno` int(2) NOT NULL,
   `errtype` varchar(32) NOT NULL,
   `errstr` text NOT NULL,
@@ -13,7 +14,6 @@ CREATE TABLE IF NOT EXISTS `error_log` (
   `errline` int(4) NOT NULL,
   `user_agent` varchar(120) NOT NULL,
   `ip_address` varchar(45) DEFAULT '0' NOT NULL,
-  `time` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 

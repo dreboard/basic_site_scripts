@@ -4,7 +4,6 @@
 debug.sh
 /vendor
 /logs/*
-/tests/
 /output/
 /projectFilesBackup/
 /docs/

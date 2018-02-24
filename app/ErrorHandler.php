@@ -18,7 +18,7 @@ class ErrorHandler
     protected $pdo;
     protected $debugBar;
 
-    public function __construct(PDO $db, StandardDebugBar $debugBar)
+    public function __construct(Database $db, StandardDebugBar $debugBar)
     {
         $this->pdo = $db;
         $this->debugBar = $debugBar;

@@ -1,7 +1,7 @@
 <?php
 //phpinfo();die;
 
-require_once __DIR__.'/../vendor/autoload.php';
+//require_once __DIR__.'/../vendor/autoload.php';
 require_once __DIR__.'/db.php';
 ini_set('error_reporting', 1);
 ini_set('display_errors', 1);

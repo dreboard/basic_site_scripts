@@ -7,7 +7,7 @@
     <testsuites>
         <testsuite name="Login">
             <directory>../tests</directory>
-            <file>../tests/TestInit.php</file>
+            <file>../tests/UserTest.php</file>
         </testsuite>
     </testsuites>
 </phpunit>

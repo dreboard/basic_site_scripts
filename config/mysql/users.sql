@@ -82,3 +82,20 @@ BEGIN
   SELECT users.id, users.name, users.password, users.level FROM `users` WHERE users.name = p_name;
 END \\
 
+/**
+* Procedure Name: FindUserByID
+* Description:    Get User By ID.
+* Created:        2-1-2018
+* Modified:       2-2-2018
+* Author:         dre board
+*/
+DELIMITER \\
+DROP PROCEDURE IF EXISTS FindUserByID;
+CREATE DEFINER=CURRENT_USER PROCEDURE FindUserByID(
+  IN p_id INT(128)
+)
+COMMENT 'Get User By ID'
+READS SQL DATA
+BEGIN
+  SELECT * FROM `users` WHERE users.id = p_id;
+END \\

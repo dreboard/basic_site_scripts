@@ -30,6 +30,7 @@ class Login
     public function __construct(PDO $db)
     {
         $this->db = $db;
+        $this->user = new User($this->db);
     }
 
     /**
@@ -41,7 +42,7 @@ class Login
     public function loginUser(string $name, string $password)
     {
         try{
-            $user = $this->getUser($name, $password);
+            $user = $this->user->getUser($name, $password);
             if ($user && password_verify($password, $user['password'])) {
                 $_SESSION['user']['name'] = $user['name'];
                 $_SESSION['user']['id'] = $user['id'];
@@ -49,32 +50,13 @@ class Login
                 exit();
             }
         } catch (Throwable $e){
-
+        	error_log($e->getMessage());
         }
         header('Location: index.php');
         exit();
     }
 
-    /**
-     * Find user
-     * @param string $name
-     * @return mixed
-     * @throws \Exception
-     */
-    public function getUser(string $name)
-    {
-        if(empty($name) || is_null($name)){
-            throw new \Exception('Username Required');
-        }
-        try{
-            $sql = $this->db->prepare('CALL FindUser(:user)');
-            $sql->bindValue(':user', $name);
-            $sql->execute();
-            return $sql->fetch(PDO::FETCH_ASSOC);
-        }catch (PDOException | Throwable $e){
-            echo $e->getMessage();
-        }
-    }
+
 
     /**
      * Log user out

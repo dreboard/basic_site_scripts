@@ -71,8 +71,9 @@ try {
 	    $password = '';
     }
 
-    $db = new PDO($dsn, $user, $password);
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //$db = new PDO($dsn, $user, $password);
+    $db = new App\Main\Database();
+    //$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sess_handle = new App\Main\SaveSession($db, $debugbar);
     session_set_save_handler($sess_handle, true);
     session_start();

@@ -9,7 +9,8 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"App\\Main\\": ["app/", "app/exceptions"]
+			"App\\Main\\": ["app/", "app/exceptions"],
+			"App\\Tests\\": ["tests/"]
 		},
 		"files": ["app/functions.php", "app/Debug.php"]
 	},

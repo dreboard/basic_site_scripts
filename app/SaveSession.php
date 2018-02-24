@@ -44,7 +44,7 @@ class SaveSession implements SessionHandlerInterface
      * @param PDO $pdo
      * @param StandardDebugBar $debugBar
      */
-    public function __construct(PDO $pdo, StandardDebugBar $debugBar)
+    public function __construct(Database $pdo, StandardDebugBar $debugBar)
     {
         $this->pdo = $pdo;
         $this->debugBar = $debugBar;

@@ -1,30 +1,15 @@
 <?php
-//phpinfo();die;
-
-//header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found", true, 404);die;
-
 require_once __DIR__.'/db.php';
 use App\Main\Debug;
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
 
 try{
     error_log(__FILE__.time());
     trigger_error(date('Y-m-d').' 13 error', E_USER_ERROR);
     throw new RangeException('Thrown RangeException');
-    //throw new \RuntimeException('Uncaught RuntimeException');
-    //throw new \DomainException('Uncaught DomainException');
-    //func();
 } catch (\Throwable $e){
     $errorLog->exceptionInsert($e);
     error_log($e->getMessage());
 }
-
-
-//header('HTTP/1.0 404 Not Found');
-
-//$status = session_status();
-//session_start();
 
 if(!isset($_SESSION['user']['id'])) {
     header('Location: /logout.php');
@@ -50,10 +35,15 @@ error_log('message');
     <link rel="stylesheet" type="text/css" href="css/vendor/font-awesome/css/font-awesome.min.css">
 
     <?php if (ENVIRONMENT === 'development'): ?>
-    <link rel="stylesheet" type="text/css" href="css/vendor/highlightjs/styles/github.css">
-    <link rel="stylesheet" type="text/css" href="css/debugbar.css">
-    <link rel="stylesheet" type="text/css" href="css/widgets.css">
-    <link rel="stylesheet" type="text/css" href="css/openhandler.css">
+	    <meta http-equiv="cache-control" content="max-age=0"/>
+	    <meta http-equiv="cache-control" content="no-cache"/>
+	    <meta http-equiv="expires" content="0"/>
+	    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
+	    <meta http-equiv="pragma" content="no-cache"/>
+	    <link rel="stylesheet" type="text/css" href="css/vendor/highlightjs/styles/github.css">
+	    <link rel="stylesheet" type="text/css" href="css/debugbar.css">
+	    <link rel="stylesheet" type="text/css" href="css/widgets.css">
+	    <link rel="stylesheet" type="text/css" href="css/openhandler.css">
     <?php endif; ?>
 
     <style>

@@ -13,6 +13,7 @@ class Database extends PDO {
 	private $pass;
 
 	public function __construct(){
+		error_log(xdebug_call_class());
 		$this->engine = 'mysql';
 		$this->host = 'localhost';
 		$this->database = 'server1';

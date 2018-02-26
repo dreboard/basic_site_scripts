@@ -5,9 +5,14 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true">
     <testsuites>
-        <testsuite name="Login">
-            <directory>../tests</directory>
-            <file>../tests/UserTest.php</file>
+        <testsuite name="All">
+            <directory>./tests</directory>
         </testsuite>
     </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./app</directory>
+        </whitelist>
+    </filter>
+
 </phpunit>

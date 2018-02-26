@@ -13,6 +13,15 @@ ini_set('display_errors', 1);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+
+	<?php if(ENVIRONMENT === 'development'): ?>
+		<meta http-equiv="cache-control" content="max-age=0" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+		<meta http-equiv="pragma" content="no-cache" />
+	<?php endif; ?>
+
     <link rel="icon" href="../../../../favicon.ico">
 
     <title>Test App Main</title>
@@ -58,12 +67,15 @@ ini_set('display_errors', 1);
     <p><?php echo password_hash('password', PASSWORD_DEFAULT); ?></p>
     <div class="row">
         <div class="col-md-8">Page 1
+	        <?php echo 'display_errors = '.get_cfg_var('display_errors');?>
             <pre>
                 <?php
                 //var_dump(session_status());
                 if(isset($_SESSION)){
                     var_dump($_SESSION);
                 }
+
+                //var_dump();
                 ?>
             </pre>
         </div>

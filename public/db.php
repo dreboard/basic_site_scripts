@@ -10,6 +10,9 @@ if (!defined('ENVIRONMENT') && PHP_SAPI !== 'cli') {
         define('ENVIRONMENT', 'production');
     }
 }
+if(!defined('EXCEPTION_LOG')){
+	define('EXCEPTION_LOG', __DIR__ . '/../logs/exceptions.log');
+}
 ini_set('error_reporting', 1);
 xdebug_break();
 ini_set('log_errors', 1);
@@ -21,7 +24,6 @@ if (ENVIRONMENT === 'development') {
     if (extension_loaded('xdebug')) {
         ini_set('xdebug.remote_log', __DIR__ . '/../logs/xdegub.log');
         //ini_set('xdebug.remote_host', '192.168.41.204');
-
 
         ini_set('xdebug.show_error_trace', 'on');
         ini_set('xdebug.scream', 1);

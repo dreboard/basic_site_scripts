@@ -3,9 +3,9 @@ require_once __DIR__.'/db.php';
 use App\Main\Debug;
 
 try{
-    error_log(__FILE__.time());
-    trigger_error(date('Y-m-d').' 13 error', E_USER_ERROR);
-    throw new RangeException('Thrown RangeException');
+    //error_log(__FILE__.time());
+    //trigger_error(date('Y-m-d').' 13 error', E_USER_ERROR);
+    //throw new RangeException('Thrown RangeException');
 } catch (\Throwable $e){
     $errorLog->exceptionInsert($e);
     error_log($e->getMessage());

@@ -12,8 +12,12 @@ if(isset($_POST['name222'])) {
 $login = new App\Main\Login($db);
 
 if (isset($_POST['name'])) {
+
     try{
+	    xdebug_start_trace(__DIR__.'/../logs/xdebug/trace/'.basename(__FILE__).''.time());
+	    //xdebug_start_trace('/trace'.time());
         $login->loginUser($_POST['name'], $_POST['password']);
+        xdebug_stop_trace();
     }catch (Throwable $e){
         echo $e->getMessage();
     }

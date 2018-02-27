@@ -1,10 +1,11 @@
 <?php
 /**
- *
- *
+ * Basic ini setting an app init
+ * {@internal change localhost to localhost:8088 for docker
+ * @todo refactor to init.php
  */
 if (!defined('ENVIRONMENT') && PHP_SAPI !== 'cli') {
-    if ('localhost:8088' === $_SERVER['HTTP_HOST']) {
+    if ('localhost' === $_SERVER['HTTP_HOST']) {
         define('ENVIRONMENT', 'development');
     } else {
         define('ENVIRONMENT', 'production');
@@ -22,15 +23,36 @@ error_log(__FILE__ . time());
 error_reporting(E_ALL);
 if (ENVIRONMENT === 'development') {
     if (extension_loaded('xdebug')) {
-        ini_set('xdebug.remote_log', __DIR__ . '/../logs/xdegub.log');
+
+    	if (!is_dir(__DIR__ .'/../logs/xdebug')){
+		    if ( ! mkdir( __DIR__ . '/../logs/xdebug', 0777 ) && ! is_dir( __DIR__ . '/../logs/xdebug' ) ) {
+			    throw new \RuntimeException( sprintf( 'Directory "%s" was not created', __DIR__ . '/../logs/xdebug' ) );
+		    }
+		    if ( ! mkdir( __DIR__ . '/../logs/xdebug/trace', 0777 ) && ! is_dir( __DIR__ . '/../logs/xdebug/trace' ) ) {
+			    throw new \RuntimeException( sprintf( 'Directory "%s" was not created', __DIR__ . '/../logs/xdebug/trace' ) );
+		    }
+		    if ( ! mkdir( __DIR__ . '/../logs/xdebug/profile', 0777 ) && ! is_dir( __DIR__ . '/../logs/xdebug/profile' ) ) {
+			    throw new \RuntimeException( sprintf( 'Directory "%s" was not created', __DIR__ . '/../logs/xdebug/profile' ) );
+		    }
+	    }
+
+    	define('XDEBUG_TRACE_DIR', __DIR__ . '/../logs/xdebug/trace');
+        ini_set('xdebug.remote_log', __DIR__ . '/../logs/xdegub/xdegub.log');
         //ini_set('xdebug.remote_host', '192.168.41.204');
 
-        ini_set('xdebug.show_error_trace', 'on');
+	    ini_set('xdebug.collect_vars', 'on');
+	    ini_set('xdebug.collect_params', '4');
+	    ini_set('xdebug.dump_globals', 'on');
+	    ini_set('xdebug.dump.SERVER', 'REQUEST_URI');
+	    ini_set('xdebug.show_local_vars', 'on');
+	    //ini_set('xdebug.trace_output_dir', __DIR__ . '/../logs/xdebug/trace');
+
+	    ini_set('xdebug.collect_assignments', true);
         ini_set('xdebug.scream', 1);
         ini_set('xdebug.show_error_trace', 1);
         //ini_set('xdebug.show_exception_trace', 1); // force php to output exceptions even in a try catch block
         ini_set('xdebug.profiler_enable', 1);
-        ini_set('xdebug.profiler_output_dir', __DIR__ . '/../logs/profiler');
+        ini_set('xdebug.profiler_output_dir', __DIR__ . '/../logs/xdegub/profiler');
     }
     ini_set('display_errors', 1);
     ini_set('html_errors', 1);

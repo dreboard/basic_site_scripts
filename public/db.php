@@ -1,7 +1,7 @@
 <?php
 /**
  * Basic ini setting an app init
- * {@internal change localhost to localhost:8088 for docker
+ * {@internal change localhost to localhost:8088 for docker}}
  * @todo refactor to init.php
  */
 if (!defined('ENVIRONMENT') && PHP_SAPI !== 'cli') {
@@ -18,7 +18,7 @@ ini_set('error_reporting', 1);
 xdebug_break();
 ini_set('log_errors', 1);
 //ini_set('error_log', $_SERVER['DOCUMENT_ROOT'] . '/php_log.log');
-ini_set('error_log', __DIR__ . '/../logs/php_log.log');
+ini_set('error_log', __DIR__.'/../logs/php_log.log');
 error_log(__FILE__ . time());
 error_reporting(E_ALL);
 if (ENVIRONMENT === 'development') {
@@ -37,8 +37,7 @@ if (ENVIRONMENT === 'development') {
 	    }
 
     	define('XDEBUG_TRACE_DIR', __DIR__ . '/../logs/xdebug/trace');
-        ini_set('xdebug.remote_log', __DIR__ . '/../logs/xdegub/xdegub.log');
-        //ini_set('xdebug.remote_host', '192.168.41.204');
+        ini_set('xdebug.remote_log', __DIR__.'/../logs/php_debug.log');
 
 	    ini_set('xdebug.collect_vars', 'on');
 	    ini_set('xdebug.collect_params', '4');
@@ -52,7 +51,7 @@ if (ENVIRONMENT === 'development') {
         ini_set('xdebug.show_error_trace', 1);
         //ini_set('xdebug.show_exception_trace', 1); // force php to output exceptions even in a try catch block
         ini_set('xdebug.profiler_enable', 1);
-        ini_set('xdebug.profiler_output_dir', __DIR__ . '/../logs/xdegub/profiler');
+        ini_set('xdebug.profiler_output_dir', __DIR__.'/../logs/xdegub/profiler');
     }
     ini_set('display_errors', 1);
     ini_set('html_errors', 1);

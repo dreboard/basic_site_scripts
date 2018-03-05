@@ -16,7 +16,7 @@ So, typically in a mapper, you see methods like insert, update, delete
  *
  */
 
-namespace App\Main;
+namespace App\Models;
 
 
 class User

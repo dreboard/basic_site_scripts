@@ -11,7 +11,7 @@ namespace App\Main;
 use PDO;
 use PDOException;
 use Throwable;
-use App\Main\Database;
+use App\Main\{Database, UserException};
 
 /**
  * Class Login
@@ -56,14 +56,16 @@ class User
 
 	/**
 	 * Find user
+	 *
 	 * @param string $name
+	 *
 	 * @return mixed
-	 * @throws \Exception
+	 * @throws UserException
 	 */
 	public function getUser(string $name)
 	{
 		if(empty($name) || is_null($name)){
-			throw new \Exception('Username Required');
+			throw new UserException('Username Required');
 		}
 		try{
 			$sql = $this->db->prepare('CALL FindUser(:user)');

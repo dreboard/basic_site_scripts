@@ -6,13 +6,18 @@
  * Time: 3:11 PM
  */
 
-if(!defined('ENVIRONMENT')){
-    if('localhost:8088' === $_SERVER['HTTP_HOST']){
-        define('ENVIRONMENT', 'development');
-    } else {
-        define('ENVIRONMENT', 'production');
-    }
+if(PHP_SAPI !== 'cli'){
+	if(!defined('ENVIRONMENT')){
+		if('localhost:8088' === $_SERVER['HTTP_HOST']){
+			define('ENVIRONMENT', 'development');
+		} else {
+			define('ENVIRONMENT', 'production');
+		}
+	}
+} else {
+	define('ENVIRONMENT', 'development');
 }
+
 ini_set('error_reporting', 1);
 
 ini_set('log_errors', 1);

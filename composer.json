@@ -5,7 +5,14 @@
 		"squizlabs/php_codesniffer": "3.*",
 		"maximebf/debugbar": "1.*",
 		"monolog/monolog": "^1.23",
-		"php-di/php-di": "^5.4"
+		"php-di/php-di": "^5.4",
+		"phpunit/phpunit": "6.5.7"
+	},
+
+	"require-dev": {
+		"brainmaestro/composer-git-hooks": "^2.4",
+		"sstalle/php7cc": "^1.2",
+		"squizlabs/php_codesniffer": "3.*"
 	},
 	"autoload": {
 		"psr-4": {
@@ -13,23 +20,5 @@
 			"App\\Tests\\": ["tests/"]
 		},
 		"files": ["app/functions.php", "app/Debug.php"]
-	},
-	"scripts": {
-		"post-install-cmd": "vendor/bin/cghooks add --ignore-lock",
-		"post-update-cmd": "vendor/bin/cghooks update",
-		"...": "..."
-	},
-	"extra": {
-		"hooks": {
-			"pre-commit": "phpunit",
-			"post-commit": "echo committed",
-			"pre-push": "phpunit && echo pushing!"
-		}
-	},
-	"require-dev": {
-		"brainmaestro/composer-git-hooks": "^2.4",
-		"sstalle/php7cc": "^1.2",
-		"squizlabs/php_codesniffer": "3.*",
-		"phpunit/phpunit": "^7"
 	}
 }

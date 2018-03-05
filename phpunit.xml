@@ -6,15 +6,20 @@
          convertWarningsToExceptions="true">
     <testsuites>
         <testsuite name="All">
-            <directory>./tests/</directory>
+            <directory>./tests</directory>
         </testsuite>
     </testsuites>
-    <logging>
-        <log type="coverage-clover" target="./build/logs/clover.xml"/>
-    </logging>
     <filter>
-        <whitelist addUncoveredFilesFromWhitelist="true">
-            <directory>./app</directory>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./app/</directory>
         </whitelist>
+        <blacklist>
+            <directory suffix=".php">./app/interfaces/</directory>
+        </blacklist>
     </filter>
+    <logging>
+        <log type="coverage-clover" target="tests/coverage/coverage.xml"/>
+        <log type="coverage-html" target="tests/coverage/html"/>
+    </logging>
+
 </phpunit>
